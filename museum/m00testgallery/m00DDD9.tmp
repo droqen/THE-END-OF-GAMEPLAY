@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://m15v1xam1sic"]
+
+[ext_resource type="Shader" path="res://museum/m00testgallery/m00.gdshader" id="1_jesw4"]
+[ext_resource type="Script" path="res://museum/m00testgallery/m_00.gd" id="1_sueku"]
+[ext_resource type="PackedScene" uid="uid://ecrt63flmkih" path="res://stages/00coins/00coins.tscn" id="2_6ktak"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ia0ki"]
+shader = ExtResource("1_jesw4")
+shader_parameter/blur_type = 0
+shader_parameter/blur_amount = 3
+shader_parameter/blur_radius = 1.0
+shader_parameter/blur_direction = Vector2(1, 0)
+
+[node name="M00" type="CanvasGroup"]
+material = SubResource("ShaderMaterial_ia0ki")
+script = ExtResource("1_sueku")
+border = null
+
+[node name="stage_holder" type="Node2D" parent="."]
+
+[node name="00Coins" parent="stage_holder" instance=ExtResource("2_6ktak")]
