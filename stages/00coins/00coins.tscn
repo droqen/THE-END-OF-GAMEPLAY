@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=4 uid="uid://ecrt63flmkih"]
+[gd_scene load_steps=11 format=4 uid="uid://ecrt63flmkih"]
 
 [ext_resource type="Script" path="res://museum/GameStage.gd" id="1_oqq55"]
 [ext_resource type="TileSet" uid="uid://ca8h7m6cixpy0" path="res://stages/00coins/coins_tiles.tres" id="2_kpw5u"]
 [ext_resource type="Texture2D" uid="uid://r570mymn6oyx" path="res://stages/00coins/coins.png" id="3_moknb"]
 [ext_resource type="Script" path="res://stages/00coins/coins_player.gd" id="4_v3hun"]
+[ext_resource type="Script" path="res://stages/00coins/coins_mover_player.gd" id="5_eskdl"]
+[ext_resource type="Script" path="res://navdi/navdibodymover.gd" id="5_kopic"]
+[ext_resource type="Script" path="res://navdi/navdisheetsprite.gd" id="6_c1l8f"]
+[ext_resource type="Resource" uid="uid://du6tphhtya481" path="res://stages/00coins/coins_sheet.tres" id="8_rts8k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rmvuc"]
 friction = 0.0
@@ -39,3 +43,22 @@ frame = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(0, 1.2)
 shape = SubResource("RectangleShape2D_44grq")
+
+[node name="coins_mover_player" type="Node2D" parent="."]
+script = ExtResource("5_eskdl")
+
+[node name="NavdiBodyMover" type="Node2D" parent="coins_mover_player"]
+script = ExtResource("5_kopic")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="coins_mover_player/NavdiBodyMover"]
+position = Vector2(0, -3)
+
+[node name="SheetSprite" type="Sprite2D" parent="coins_mover_player"]
+texture = ExtResource("3_moknb")
+hframes = 10
+vframes = 10
+frame = 5
+script = ExtResource("6_c1l8f")
+sheet = ExtResource("8_rts8k")
+frames = PackedInt32Array(4, 5)
+ani_index = 1
