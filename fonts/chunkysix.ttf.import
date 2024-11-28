@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://df5niud3b3uev"
-path="res://.godot/imported/chunkysix.ttf-6629008d485a9ee9d25659d74a0c6f3b.fontdata"
+path="res://.godot/imported/chunkysix.ttf-d21565519f43631ff588e35babae989f.fontdata"
 
 [deps]
 
-source_file="res://navdi4/fonts/chunkysix.ttf"
-dest_files=["res://.godot/imported/chunkysix.ttf-6629008d485a9ee9d25659d74a0c6f3b.fontdata"]
+source_file="res://fonts/chunkysix.ttf"
+dest_files=["res://.godot/imported/chunkysix.ttf-d21565519f43631ff588e35babae989f.fontdata"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://kgla71s2w7a3"
-path="res://.godot/imported/quizardrymono.ttf-ff83e489a9a9c69a3c1290dc09c6ab59.fontdata"
+path="res://.godot/imported/quizardrymono.ttf-2a6c8ccf889eaa2cf1aaaccb40248dbc.fontdata"
 
 [deps]
 
-source_file="res://navdi4/fonts/quizardrymono.ttf"
-dest_files=["res://.godot/imported/quizardrymono.ttf-ff83e489a9a9c69a3c1290dc09c6ab59.fontdata"]
+source_file="res://fonts/quizardrymono.ttf"
+dest_files=["res://.godot/imported/quizardrymono.ttf-2a6c8ccf889eaa2cf1aaaccb40248dbc.fontdata"]
 
 [params]
 

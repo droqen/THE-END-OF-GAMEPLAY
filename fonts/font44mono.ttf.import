@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://box70xu60paqv"
-path="res://.godot/imported/font44mono.ttf-83f14558888c6dad34f2b467a54023b8.fontdata"
+path="res://.godot/imported/font44mono.ttf-94996db81d3ecc45781ea367bce73c29.fontdata"
 
 [deps]
 
-source_file="res://navdi4/fonts/font44mono.ttf"
-dest_files=["res://.godot/imported/font44mono.ttf-83f14558888c6dad34f2b467a54023b8.fontdata"]
+source_file="res://fonts/font44mono.ttf"
+dest_files=["res://.godot/imported/font44mono.ttf-94996db81d3ecc45781ea367bce73c29.fontdata"]
 
 [params]
 

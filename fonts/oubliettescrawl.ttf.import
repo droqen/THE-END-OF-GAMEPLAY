@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cgd27m3vqxk8m"
-path="res://.godot/imported/oubliettescrawl.ttf-72fdd3a64bac2612a91ce65859e03b96.fontdata"
+path="res://.godot/imported/oubliettescrawl.ttf-efa9e977fb7cfd203d9e60f29feb68cc.fontdata"
 
 [deps]
 
-source_file="res://navdi4/fonts/oubliettescrawl.ttf"
-dest_files=["res://.godot/imported/oubliettescrawl.ttf-72fdd3a64bac2612a91ce65859e03b96.fontdata"]
+source_file="res://fonts/oubliettescrawl.ttf"
+dest_files=["res://.godot/imported/oubliettescrawl.ttf-efa9e977fb7cfd203d9e60f29feb68cc.fontdata"]
 
 [params]
 

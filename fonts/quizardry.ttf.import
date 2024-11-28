@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b23vrkinia56w"
-path="res://.godot/imported/quizardry.ttf-d69d3a98e434bf21165a0b7bc4359b6d.fontdata"
+path="res://.godot/imported/quizardry.ttf-21708d32a205845256dd50e4790b28fc.fontdata"
 
 [deps]
 
-source_file="res://navdi4/fonts/quizardry.ttf"
-dest_files=["res://.godot/imported/quizardry.ttf-d69d3a98e434bf21165a0b7bc4359b6d.fontdata"]
+source_file="res://fonts/quizardry.ttf"
+dest_files=["res://.godot/imported/quizardry.ttf-21708d32a205845256dd50e4790b28fc.fontdata"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cwwyrmvhedp2t"
-path="res://.godot/imported/thin8high.ttf-f26de2955e00165ab5ebda2f4fd35957.fontdata"
+path="res://.godot/imported/thin8high.ttf-ec7d2bcd99d47707744f5693b70d483a.fontdata"
 
 [deps]
 
-source_file="res://navdi4/fonts/thin8high.ttf"
-dest_files=["res://.godot/imported/thin8high.ttf-f26de2955e00165ab5ebda2f4fd35957.fontdata"]
+source_file="res://fonts/thin8high.ttf"
+dest_files=["res://.godot/imported/thin8high.ttf-ec7d2bcd99d47707744f5693b70d483a.fontdata"]
 
 [params]
 

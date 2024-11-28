@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://depgdmj80k21a"
-path="res://.godot/imported/roughyFIVEbySIX.ttf-19eb17bc29ddd68c50ba86ff6a60d6c8.fontdata"
+path="res://.godot/imported/roughyFIVEbySIX.ttf-2740a9875d0ad1bc82e81dca1d00a19d.fontdata"
 
 [deps]
 
-source_file="res://navdi4/fonts/roughyFIVEbySIX.ttf"
-dest_files=["res://.godot/imported/roughyFIVEbySIX.ttf-19eb17bc29ddd68c50ba86ff6a60d6c8.fontdata"]
+source_file="res://fonts/roughyFIVEbySIX.ttf"
+dest_files=["res://.godot/imported/roughyFIVEbySIX.ttf-2740a9875d0ad1bc82e81dca1d00a19d.fontdata"]
 
 [params]
 

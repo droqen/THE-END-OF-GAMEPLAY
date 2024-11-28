@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b5de7g0om36aa"
-path="res://.godot/imported/fivermono.ttf-e149aaf096f1607029ec26313777f5b3.fontdata"
+path="res://.godot/imported/fivermono.ttf-76f2bf4d23793b4e92a1e7149dcf888d.fontdata"
 
 [deps]
 
-source_file="res://navdi4/fonts/fivermono.ttf"
-dest_files=["res://.godot/imported/fivermono.ttf-e149aaf096f1607029ec26313777f5b3.fontdata"]
+source_file="res://fonts/fivermono.ttf"
+dest_files=["res://.godot/imported/fivermono.ttf-76f2bf4d23793b4e92a1e7149dcf888d.fontdata"]
 
 [params]
 

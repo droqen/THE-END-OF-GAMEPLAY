@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cl366j80sxll6"
-path="res://.godot/imported/fiver.ttf-589955ff25ff51109b4b03f96d1e9a5d.fontdata"
+path="res://.godot/imported/fiver.ttf-2f0527d2814622aef7edb3884c320f3e.fontdata"
 
 [deps]
 
-source_file="res://navdi4/fonts/fiver.ttf"
-dest_files=["res://.godot/imported/fiver.ttf-589955ff25ff51109b4b03f96d1e9a5d.fontdata"]
+source_file="res://fonts/fiver.ttf"
+dest_files=["res://.godot/imported/fiver.ttf-2f0527d2814622aef7edb3884c320f3e.fontdata"]
 
 [params]
 

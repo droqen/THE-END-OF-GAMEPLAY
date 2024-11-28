@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://csk5kuptmpwv3"
-path="res://.godot/imported/emptytowns.ttf-1af930633f21d827173900ddf346ce39.fontdata"
+path="res://.godot/imported/emptytowns.ttf-b8df761f8444435f6dcf94c2f6f3b31b.fontdata"
 
 [deps]
 
-source_file="res://navdi4/fonts/emptytowns.ttf"
-dest_files=["res://.godot/imported/emptytowns.ttf-1af930633f21d827173900ddf346ce39.fontdata"]
+source_file="res://fonts/emptytowns.ttf"
+dest_files=["res://.godot/imported/emptytowns.ttf-b8df761f8444435f6dcf94c2f6f3b31b.fontdata"]
 
 [params]
 

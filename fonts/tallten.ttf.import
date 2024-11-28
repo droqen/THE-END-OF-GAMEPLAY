@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://lcajxf0jgbvv"
-path="res://.godot/imported/tallten.ttf-f7126191284851e3f757c09df4d1d463.fontdata"
+path="res://.godot/imported/tallten.ttf-50ea72da0c18bb36b5070e6b102097ea.fontdata"
 
 [deps]
 
-source_file="res://navdi4/fonts/tallten.ttf"
-dest_files=["res://.godot/imported/tallten.ttf-f7126191284851e3f757c09df4d1d463.fontdata"]
+source_file="res://fonts/tallten.ttf"
+dest_files=["res://.godot/imported/tallten.ttf-50ea72da0c18bb36b5070e6b102097ea.fontdata"]
 
 [params]
 
