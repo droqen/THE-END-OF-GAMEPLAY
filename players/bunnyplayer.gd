@@ -1,5 +1,5 @@
-#extends NavdiSolePlayer
-extends Node2D
+extends NavdiSolePlayer
+#extends Node2D
 
 enum {
 	FLORBUF,

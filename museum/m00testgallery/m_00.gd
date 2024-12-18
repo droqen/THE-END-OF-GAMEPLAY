@@ -36,6 +36,11 @@ func set_gamestage(stage:GameStage) -> void:
 	if not stage_is_already_vps_child:
 		stage_holder.add_child(stage)
 		stage.owner = owner if owner else self
+		stage.touched_exit.connect(func(xid,xpath):
+			var new_stage = load(xpath).instantiate()
+			if new_stage:
+				set_gamestage(new_stage)
+		)
 	_on_resize()
 
 func _on_resize() -> void:

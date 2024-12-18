@@ -18,8 +18,6 @@ tile_set = ExtResource("2_kpw5u")
 
 [node name="warpmaze" parent="." instance=ExtResource("2_hc6oi")]
 tile_map_data = PackedByteArray("AAD//wUAAAABAAAAAAD//wAAAAABAAAAAAD//wEAAAABAAAAAAD//wIAAAABAAAAAAD//wMAAAABAAAAAAD//wQAAAABAAAAAAAAAAQAAAABAAEAAAA=")
-goto_1 = "res://stages/00coins/01_large_coins.tscn"
-hide_on_play = true
 
 [node name="Label" type="Label" parent="."]
 offset_top = 5.0
