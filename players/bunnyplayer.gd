@@ -16,7 +16,9 @@ enum {
 var vx : float;
 var vy : float;
 var ajs : int = 1;
+var last_aj : bool = true;
 var ajflippyfloppin : bool = false
+var ajupsideydowney : bool = false
 var ducking : bool = false
 var inchimny : bool = false
 
@@ -33,6 +35,10 @@ func _physics_process(_delta: float) -> void:
 		vy = -1.0
 		ajs -= 1
 		ajflippyfloppin = true
+	elif ajs==0 and bufs.try_eat([JUMPHITBUF]):
+		vy = -1.0 # but gravity is high
+		ajs = -1
+		ajupsideydowney = true
 	var onfloor : bool = (vy >= 0 and
 	mover.cast_fraction(self, solidcast, VERTICAL, 1) < 1
 	)
@@ -44,14 +50,18 @@ func _physics_process(_delta: float) -> void:
 			vy = -0.5
 			ajs = 1
 			ajflippyfloppin = false
+			ajupsideydowney = false
 	var isduck : bool = onfloor and Pin.get_plant_held() and not inchimny
 	if isduck: ducking = true
 	elif ducking:
 		ducking = false
-		onfloor = false
-		if spr.frame == 20:
-			vy = -min(0.5,abs(vx)+0.1)
-			bufs.setmin(FLORBUF,20)
+		if onfloor:
+			onfloor = false
+			if spr.frame == 20:
+				vy = -min(0.5,abs(vx)+0.1)
+				bufs.setmin(FLORBUF,20)
+		else:
+			ajflippyfloppin = true
 	
 	if inchimny:
 		ajflippyfloppin = false # nop
@@ -61,8 +71,13 @@ func _physics_process(_delta: float) -> void:
 		)
 		vx = move_toward(vx * 0.98, dpad.x * 0.5 - 0.2 * chimnyoffset, 0.2)
 		vy = move_toward(vy * 0.98, dpad.y * 0.4, 0.2)
+	elif ajupsideydowney:
+		pass
 	elif ajflippyfloppin:
-		vx = move_toward(vx, dpad.x * 1.0, 0.005) # sliiight control
+		if vy < 0:
+			vx = move_toward(vx, dpad.x * 1.0, 0.02) # improved control
+		else:
+			vx = move_toward(vx, dpad.x * 1.0, 0.005) # sliiight control
 	else:
 		if isduck:
 			if abs(vx) > 0.5 and dpad.x: spr.flip_h = dpad.x < 0
@@ -75,13 +90,16 @@ func _physics_process(_delta: float) -> void:
 			vx = move_toward(vx, dpad.x * 1.0, 0.02)
 	
 	vy = move_toward(vy, 2.0, 0.01)
-	if vy < 0 and not Pin.get_jump_held():
+	if ajupsideydowney:
+		vy += 0.03
+	elif vy < 0 and not Pin.get_jump_held():
 		vy += 0.02 # faster fall! end your jump early
 	elif vy > 0:
 		vy += 0.02
 		if ajflippyfloppin: vy += 0.01 # flippyfloppin falls a lil xtra fast
 	
 	if onfloor:
+		ajupsideydowney = false
 		bufs.on(FLORBUF)
 		if vy > 1 and ajflippyfloppin:
 			vy = -0.5 # boink
@@ -91,6 +109,8 @@ func _physics_process(_delta: float) -> void:
 	if vx and!mover.try_slip_move(self, solidcast, HORIZONTAL, vx):
 		if isduck:
 			vx *= -0.75
+		elif ajupsideydowney:
+			vx *= -0.50
 		elif ajflippyfloppin or abs(vx) >= 1:
 			vx *= -0.75
 			spr.flip_h = vx < 0
@@ -126,7 +146,9 @@ func _physics_process(_delta: float) -> void:
 		else:
 			spr.setup([22,22,22,23],30)
 	else:
-		if ajflippyfloppin:
+		if ajupsideydowney:
+			spr.setup([14])
+		elif ajflippyfloppin:
 			if vy > 0: spr.setup([13,14,15,23],20)
 			else: spr.setup([13,14,15,23],6)
 		else:

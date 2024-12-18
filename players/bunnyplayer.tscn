@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://tjgiw02jje6v"]
+
+[ext_resource type="Script" path="res://players/bunnyplayer.gd" id="1_yv1v0"]
+[ext_resource type="Texture2D" uid="uid://twrppk557rlj" path="res://players/animals_and_fruits_game.png" id="2_c2p0j"]
+[ext_resource type="Script" path="res://navdi/navdisheetsprite.gd" id="3_7gxn6"]
+[ext_resource type="Resource" uid="uid://c7yhdd0uv3my4" path="res://players/aandf_sheet.tres" id="4_4jde2"]
+[ext_resource type="Script" path="res://navdi/navdibodymover.gd" id="5_e27g4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcdee"]
+size = Vector2(8, 8)
+
+[node name="bunnyplayer" type="Node2D"]
+position = Vector2(5, 5)
+script = ExtResource("1_yv1v0")
+
+[node name="SheetSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_c2p0j")
+hframes = 10
+vframes = 10
+frame = 22
+script = ExtResource("3_7gxn6")
+sheet = ExtResource("4_4jde2")
+frames = PackedInt32Array(22)
+
+[node name="NavdiBodyMover" type="Node2D" parent="."]
+script = ExtResource("5_e27g4")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="NavdiBodyMover"]
+visible = false
+shape = SubResource("RectangleShape2D_kcdee")
+target_position = Vector2(0, 0)
+
+[node name="left" type="RayCast2D" parent="."]
+visible = false
+target_position = Vector2(-8, 0)
+
+[node name="right" type="RayCast2D" parent="."]
+visible = false
+target_position = Vector2(8, 0)
