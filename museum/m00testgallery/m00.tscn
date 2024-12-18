@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://m15v1xam1sic"]
+[gd_scene load_steps=7 format=3 uid="uid://m15v1xam1sic"]
 
 [ext_resource type="Shader" path="res://museum/m00testgallery/m00.gdshader" id="1_jesw4"]
 [ext_resource type="Script" path="res://museum/m00testgallery/m_00.gd" id="1_sueku"]
 [ext_resource type="Script" path="res://navdi/navdisoleplayerholder.gd" id="4_58wwn"]
+[ext_resource type="AudioStream" uid="uid://de13wt18w7q55" path="res://music/musicbox.mp3" id="4_ugx7i"]
+[ext_resource type="Script" path="res://museum/m00testgallery/music_player.gd" id="4_vgkph"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ia0ki"]
 shader = ExtResource("1_jesw4")
@@ -12,15 +14,12 @@ shader_parameter/blur_radius = 1.0
 shader_parameter/blur_direction = Vector2(1, 1)
 
 [node name="M00" type="CanvasGroup"]
-process_mode = 3
 material = SubResource("ShaderMaterial_ia0ki")
 script = ExtResource("1_sueku")
 
 [node name="stage_holder" type="Node2D" parent="."]
-process_mode = 1
 
 [node name="player_holder" type="Node2D" parent="."]
-process_mode = 1
 script = ExtResource("4_58wwn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -35,3 +34,9 @@ offset_top = -215.0
 offset_right = 3089.0
 offset_bottom = 1381.0
 color = Color(0, 0, 0, 1)
+
+[node name="music_player" type="Node2D" parent="."]
+script = ExtResource("4_vgkph")
+
+[node name="Musicbox" type="AudioStreamPlayer" parent="music_player"]
+stream = ExtResource("4_ugx7i")

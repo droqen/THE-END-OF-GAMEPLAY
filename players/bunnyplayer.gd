@@ -109,9 +109,7 @@ func _physics_process(_delta: float) -> void:
 		pass
 	else:
 		vy = move_toward(vy, 2.0, 0.01)
-		if ajupsideydowney:
-			vy += 0.03
-		elif vy < 0 and not Pin.get_jump_held():
+		if vy < 0 and not Pin.get_jump_held():
 			vy += 0.02 # faster fall! end your jump early
 		elif vy > 0:
 			vy += 0.02
@@ -132,7 +130,8 @@ func _physics_process(_delta: float) -> void:
 			vx *= -0.50
 		elif ajflippyfloppin or abs(vx) >= 1:
 			vx *= -0.75
-			spr.flip_h = vx < 0
+			if abs(vx) > 0.5: spr.flip_h = vx < 0
+			elif dpad.x: spr.flip_h = dpad.x < 0
 			vy *= 0.5
 			vy -= 0.4
 			ajs = 0
