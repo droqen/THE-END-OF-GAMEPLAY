@@ -1,22 +1,15 @@
-[gd_scene load_steps=12 format=4 uid="uid://ecrt63flmkih"]
+[gd_scene load_steps=9 format=4 uid="uid://ecrt63flmkih"]
 
 [ext_resource type="Script" path="res://museum/GameStage.gd" id="1_oqq55"]
 [ext_resource type="TileSet" uid="uid://ca8h7m6cixpy0" path="res://stages/00coins/coins_tiles.tres" id="2_kpw5u"]
-[ext_resource type="Texture2D" uid="uid://r570mymn6oyx" path="res://stages/00coins/coins.png" id="3_moknb"]
-[ext_resource type="Script" path="res://stages/00coins/coins_player.gd" id="4_v3hun"]
-[ext_resource type="Script" path="res://stages/00coins/coins_mover_player.gd" id="5_eskdl"]
 [ext_resource type="Script" path="res://navdi/navdibodymover.gd" id="5_kopic"]
 [ext_resource type="Script" path="res://navdi/navdisheetsprite.gd" id="6_c1l8f"]
-[ext_resource type="Resource" uid="uid://du6tphhtya481" path="res://stages/00coins/coins_sheet.tres" id="8_rts8k"]
+[ext_resource type="Script" path="res://players/bunnyplayer.gd" id="9_fp5vg"]
+[ext_resource type="Texture2D" uid="uid://twrppk557rlj" path="res://players/animals_and_fruits_game.png" id="10_axhb1"]
+[ext_resource type="Resource" uid="uid://c7yhdd0uv3my4" path="res://players/aandf_sheet.tres" id="11_bnf7g"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rmvuc"]
-friction = 0.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_44grq"]
-size = Vector2(6, 8)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fapk"]
-size = Vector2(5, 5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcdee"]
+size = Vector2(8, 8)
 
 [node name="00Coins" type="Node2D"]
 script = ExtResource("1_oqq55")
@@ -25,45 +18,27 @@ script = ExtResource("1_oqq55")
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAFAAEAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAFAAEAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAFAAEAAAACAAYAAAAAAAAAAAACAAcAAAAFAAEAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAFAAEAAAADAAUAAAAFAAEAAAADAAYAAAAFAAEAAAADAAcAAAAFAAEAAAADAAgAAAAFAAEAAAADAAkAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAFAAAAAAAEAAUAAAAFAAEAAAAEAAYAAAAAAAAAAAAEAAcAAAAFAAEAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAFAAAAAAAFAAUAAAAFAAEAAAAFAAYAAAAAAAAAAAAFAAcAAAAFAAEAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAGAAcAAAAFAAEAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAFAAAAAAAHAAcAAAAFAAEAAAAHAAgAAAAFAAEAAAAHAAkAAAAFAAEAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAFAAAAAAAIAAcAAAAFAAEAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAFAAAAAAAJAAcAAAAFAAEAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAKAAYAAAAFAAEAAAAKAAUAAAAFAAEAAAAKAAQAAAAFAAEAAAAKAAMAAAAFAAEAAAA=")
 tile_set = ExtResource("2_kpw5u")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_moknb")
+[node name="bunnyplayer" type="Node2D" parent="."]
+script = ExtResource("9_fp5vg")
+
+[node name="SheetSprite" type="Sprite2D" parent="bunnyplayer"]
+texture = ExtResource("10_axhb1")
 hframes = 10
 vframes = 10
-frame = 5
+frame = 22
+script = ExtResource("6_c1l8f")
+sheet = ExtResource("11_bnf7g")
+frames = PackedInt32Array(22)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(43, 16)
-physics_material_override = SubResource("PhysicsMaterial_rmvuc")
-gravity_scale = 0.0
-script = ExtResource("4_v3hun")
-
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-texture = ExtResource("3_moknb")
-hframes = 10
-vframes = 10
-frame = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(0, 1.2)
-shape = SubResource("RectangleShape2D_44grq")
-
-[node name="coins_mover_player" type="Node2D" parent="."]
-script = ExtResource("5_eskdl")
-
-[node name="NavdiBodyMover" type="Node2D" parent="coins_mover_player"]
+[node name="NavdiBodyMover" type="Node2D" parent="bunnyplayer"]
 script = ExtResource("5_kopic")
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="coins_mover_player/NavdiBodyMover"]
-position = Vector2(0, -3)
-shape = SubResource("RectangleShape2D_3fapk")
+[node name="ShapeCast2D" type="ShapeCast2D" parent="bunnyplayer/NavdiBodyMover"]
+shape = SubResource("RectangleShape2D_kcdee")
 target_position = Vector2(0, 0)
 
-[node name="SheetSprite" type="Sprite2D" parent="coins_mover_player"]
-texture = ExtResource("3_moknb")
-hframes = 10
-vframes = 10
-frame = 5
-script = ExtResource("6_c1l8f")
-sheet = ExtResource("8_rts8k")
-frames = PackedInt32Array(4, 5)
-ani_index = 1
+[node name="left" type="RayCast2D" parent="bunnyplayer"]
+target_position = Vector2(-8, 0)
+
+[node name="right" type="RayCast2D" parent="bunnyplayer"]
+target_position = Vector2(8, 0)

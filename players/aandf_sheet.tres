@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Sheet" load_steps=3 format=3 uid="uid://c7yhdd0uv3my4"]
+
+[ext_resource type="Script" path="res://navdi/navdisheet.gd" id="1_u2tre"]
+[ext_resource type="Texture2D" uid="uid://twrppk557rlj" path="res://players/animals_and_fruits_game.png" id="2_jckd5"]
+
+[resource]
+script = ExtResource("1_u2tre")
+texture = ExtResource("2_jckd5")
+hframes = 10
+vframes = 10
+defaultframe = 0
