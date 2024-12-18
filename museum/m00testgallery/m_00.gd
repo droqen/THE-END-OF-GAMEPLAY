@@ -10,9 +10,13 @@ var game_scale : int = 0
 @export var border : int = 20
 #var _last_known_viewport_size : Vector2i
 
+@export var first_stage : PackedScene
+const FIRST_STAGE_DEFAULT = preload("res://stages/01debugmenu/00_debugmenu.tscn") 
+
 func _ready() -> void:
-	set_gamestage(
-		load("res://stages/00coins/00coins.tscn").instantiate()
+	gradual_goto_gamestage(
+		null,
+		(first_stage if first_stage else FIRST_STAGE_DEFAULT).instantiate()
 	) # just create one.
 	get_viewport().size_changed.connect(_on_resize)
 	_on_resize()
@@ -33,9 +37,17 @@ func set_gamestage(stage:GameStage) -> void:
 		stage_holder.add_child(stage)
 		stage.owner = owner if owner else self
 		stage.touched_exit.connect(func(xid,xpath):
-			var new_stage = load(xpath).instantiate()
-			if new_stage: gradual_goto_gamestage(stage, new_stage)
-			# else - don't?
+			match xpath:
+				'','res://':
+					gradual_goto_gamestage(stage,
+						FIRST_STAGE_DEFAULT.instantiate())
+				_:
+					if ResourceLoader.exists(xpath): 
+						gradual_goto_gamestage(stage,
+							load(xpath).instantiate())
+					else:
+						push_error("[m_00.gd] can't go to scene at bad path '%s'" % xpath)
+						print("[m_00.gd] can't go to scene at bad path '%s'" % xpath)
 		)
 	_on_resize()
 
@@ -55,14 +67,19 @@ func _on_resize() -> void:
 
 func gradual_goto_gamestage(laststage:GameStage, newstage:GameStage):
 	get_tree().paused = true # pause the game.
-	$EntireScreenOverlay.modulate.a = 0
-	$EntireScreenOverlay.show()
-	for i in range(0+1,10+1,1):
-		await get_tree().create_timer(0.05).timeout
-		if randf()<0.01: await get_tree().create_timer(randf()*randf()).timeout
-		set_blur_mult(1.0 + i * 0.5)
-		$EntireScreenOverlay.modulate.a = i * 0.2 - 1
-	newstage.last_stage_path = laststage.scene_file_path
+	if laststage != null:
+		$EntireScreenOverlay.modulate.a = 0
+		$EntireScreenOverlay.show()
+		for i in range(0+1,10+1,1):
+			await get_tree().create_timer(0.05).timeout
+			if randf()<0.01: await get_tree().create_timer(randf()*randf()).timeout
+			set_blur_mult(1.0 + i * 0.5)
+			$EntireScreenOverlay.modulate.a = i * 0.2 - 1
+		newstage.last_stage_path = laststage.scene_file_path
+	else:
+		$EntireScreenOverlay.modulate.a = 1
+		$EntireScreenOverlay.show()
+		set_blur_mult(6.0)
 	set_gamestage(newstage)
 	await get_tree().create_timer(randf()*randf()).timeout
 	for i in range(10,0-1,-1):

@@ -17,16 +17,17 @@ position = Vector2(5, 5)
 script = ExtResource("1_yv1v0")
 
 [node name="SheetSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
 texture = ExtResource("2_c2p0j")
 hframes = 10
 vframes = 10
 frame = 22
 script = ExtResource("3_7gxn6")
 sheet = ExtResource("4_4jde2")
-frames = PackedInt32Array(22)
+frames = PackedInt32Array(22, 23)
 
 [node name="NavdiBodyMover" type="Node2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, 2)
 script = ExtResource("5_e27g4")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="NavdiBodyMover"]
@@ -41,8 +42,10 @@ target_position = Vector2(0, 0)
 
 [node name="left" type="RayCast2D" parent="."]
 visible = false
+position = Vector2(0, 1)
 target_position = Vector2(-8, 0)
 
 [node name="right" type="RayCast2D" parent="."]
 visible = false
+position = Vector2(0, 1)
 target_position = Vector2(8, 0)

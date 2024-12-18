@@ -5,13 +5,14 @@ enum {
 	FLORBUF,
 	JUMPHITBUF,
 	CHIMNYBUF,
+	SPAWNEDBUF,
 }
 
 @onready var spr = $SheetSprite
 @onready var mover = $NavdiBodyMover
 @onready var solidcast = $NavdiBodyMover/ShapeCast2D
 @onready var bufs : Bufs = Bufs.Make(self).setup_bufons([
-	FLORBUF,5, JUMPHITBUF,5, CHIMNYBUF,3, ])
+	FLORBUF,5, JUMPHITBUF,5, CHIMNYBUF,3, SPAWNEDBUF,2, ])
 
 var vx : float;
 var vy : float;
@@ -22,12 +23,14 @@ var ajupsideydowney : bool = false
 var ducking : bool = false
 var inchimny : bool = false
 
+func _ready() -> void:
+	super._ready()
+	bufs.on(FLORBUF) # start on the floor, i think.
+	bufs.on(SPAWNEDBUF)
+
 func _physics_process(_delta: float) -> void:
 	var dpad = Pin.get_dpad()
-	dpad.y = (
-		-1 if Pin.get_jump_held() else 0 +
-		1 if Pin.get_plant_held() else 0
-	)
+	if Pin.get_jump_held(): dpad.y = -1
 	if Pin.get_jump_hit(): bufs.on(JUMPHITBUF)
 	if bufs.try_eat([JUMPHITBUF,FLORBUF]):
 		vy = -1.0
@@ -145,7 +148,9 @@ func _physics_process(_delta: float) -> void:
 		else:
 			vy=0;
 	
-	if inchimny:
+	if bufs.has(SPAWNEDBUF):
+		pass
+	elif inchimny:
 		spr.setup([41,42],10)
 		spr.playing = dpad.x or dpad.y
 	elif onfloor:

@@ -17,7 +17,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAA
 tile_set = ExtResource("2_kpw5u")
 
 [node name="warpmaze" parent="." instance=ExtResource("2_hc6oi")]
-tile_map_data = PackedByteArray("AAD//wUAAAABAAAAAAD//wAAAAABAAAAAAD//wEAAAABAAAAAAD//wIAAAABAAAAAAD//wMAAAABAAAAAAD//wQAAAABAAAAAAAAAAQAAAABAAEAAAAFAP3/AAAEAAEAAAD///7/AAABAAAAAAD///3/AAABAAAAAAD///z/AAABAAAAAAA=")
+tile_map_data = PackedByteArray("AAD//wUAAAABAAAAAAD///3/AAABAAAAAAAFAP3/AAAEAAEAAAD//wAAAAABAAAAAAD//wEAAAABAAAAAAD//wIAAAABAAAAAAD//wMAAAABAAAAAAD//wQAAAABAAAAAAAAAAQAAAABAAEAAAD///7/AAABAAAAAAD///z/AAABAAAAAAAEAAYAAAAAAAEAAAA=")
 goto_1 = "res://stages/00coins/01_large_coins.tscn"
 goto_4 = "res://stages/00coins/02b_side_hope.tscn"
 hide_on_play = true
@@ -35,4 +35,4 @@ chose to play."
 label_settings = SubResource("LabelSettings_obx6p")
 
 [node name="bunnyplayer" parent="." instance=ExtResource("4_je2js")]
-position = Vector2(46, 66)
+position = Vector2(55, 65)
