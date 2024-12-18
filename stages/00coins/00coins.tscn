@@ -17,8 +17,9 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAA
 tile_set = ExtResource("2_kpw5u")
 
 [node name="warpmaze" parent="." instance=ExtResource("2_hc6oi")]
-tile_map_data = PackedByteArray("AAD//wUAAAABAAAAAAD//wAAAAABAAAAAAD//wEAAAABAAAAAAD//wIAAAABAAAAAAD//wMAAAABAAAAAAD//wQAAAABAAAAAAAAAAQAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAD//wUAAAABAAAAAAD//wAAAAABAAAAAAD//wEAAAABAAAAAAD//wIAAAABAAAAAAD//wMAAAABAAAAAAD//wQAAAABAAAAAAAAAAQAAAABAAEAAAAFAP3/AAAEAAEAAAD///7/AAABAAAAAAD///3/AAABAAAAAAD///z/AAABAAAAAAA=")
 goto_1 = "res://stages/00coins/01_large_coins.tscn"
+goto_4 = "res://stages/00coins/02b_side_hope.tscn"
 hide_on_play = true
 
 [node name="Label" type="Label" parent="."]

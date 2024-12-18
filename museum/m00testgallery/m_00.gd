@@ -10,10 +10,6 @@ var game_scale : int = 0
 @export var border : int = 20
 #var _last_known_viewport_size : Vector2i
 
-#var blurmin : float = 0.0
-#var blurmax : float = 0.0
-#var blurphase : float = 0.0
-
 func _ready() -> void:
 	set_gamestage(
 		load("res://stages/00coins/00coins.tscn").instantiate()
@@ -38,8 +34,8 @@ func set_gamestage(stage:GameStage) -> void:
 		stage.owner = owner if owner else self
 		stage.touched_exit.connect(func(xid,xpath):
 			var new_stage = load(xpath).instantiate()
-			if new_stage:
-				set_gamestage(new_stage)
+			if new_stage: gradual_goto_gamestage(stage, new_stage)
+			# else - don't?
 		)
 	_on_resize()
 
@@ -54,10 +50,34 @@ func _on_resize() -> void:
 		camera.zoom = Vector2(game_scale, game_scale)
 		#blurmin = max(1.0,game_scale * 0.66)
 		#blurmax = max(1.0,game_scale * 1.33)
-		(material as ShaderMaterial).set_shader_parameter("blur_amount", max(1.0,game_scale * 0.66))
+		update_blur()
 	camera.position = Vector2(floor(stage_size.x/2),floor(stage_size.y/2))
 
-#func _physics_process(delta: float) -> void:
-	#blurphase += delta
-	#(material as ShaderMaterial).set_shader_parameter("blur_amount", lerp(blurmin,blurmax,0.5+0.5*sin(blurphase)))
-	#
+func gradual_goto_gamestage(laststage:GameStage, newstage:GameStage):
+	get_tree().paused = true # pause the game.
+	$EntireScreenOverlay.modulate.a = 0
+	$EntireScreenOverlay.show()
+	for i in range(0+1,10+1,1):
+		await get_tree().create_timer(0.05).timeout
+		if randf()<0.01: await get_tree().create_timer(randf()*randf()).timeout
+		set_blur_mult(1.0 + i * 0.5)
+		$EntireScreenOverlay.modulate.a = i * 0.2 - 1
+	newstage.last_stage_path = laststage.scene_file_path
+	set_gamestage(newstage)
+	await get_tree().create_timer(randf()*randf()).timeout
+	for i in range(10,0-1,-1):
+		await get_tree().create_timer(0.05).timeout
+		if randf()<0.01: await get_tree().create_timer(randf()*randf()).timeout
+		set_blur_mult(1.0 + i * 0.5)
+		$EntireScreenOverlay.modulate.a = i * 0.2 - 1
+	$EntireScreenOverlay.hide()
+	get_tree().paused = false # finally -- unpause it.
+
+var blur_multiplier : float = 1.0
+func set_blur_mult(m:float):
+	blur_multiplier = m
+	update_blur()
+func update_blur():
+	(material as ShaderMaterial).set_shader_parameter("blur_amount",
+		max(1.0,game_scale * 0.66 * blur_multiplier)
+	)

@@ -42,7 +42,16 @@ func _physics_process(_delta: float) -> void:
 	var onfloor : bool = (vy >= 0 and
 	mover.cast_fraction(self, solidcast, VERTICAL, 1) < 1
 	)
-	var inchimny_now = $left.is_colliding() and $right.is_colliding() and vy >= -0.6
+	#var inchimny_now = $left.is_colliding() and $right.is_colliding() and vy >= -0.6
+	var inchimny_now = (inchimny or vy >= -0.6) and (
+		mover.cast_fraction(self,
+			$NavdiBodyMover/squeezecast,
+			HORIZONTAL, -5) < 1
+		and
+		mover.cast_fraction(self,
+			$NavdiBodyMover/squeezecast,
+			HORIZONTAL, 5) < 1
+	)
 	if inchimny != inchimny_now:
 		inchimny = inchimny_now
 		if !inchimny_now and dpad.y < 0:
@@ -69,8 +78,12 @@ func _physics_process(_delta: float) -> void:
 			abs($left.get_collision_point().x - $left.global_position.x) -
 			abs($right.get_collision_point().x - $right.global_position.x)
 		)
-		vx = move_toward(vx * 0.98, dpad.x * 0.5 - 0.2 * chimnyoffset, 0.2)
-		vy = move_toward(vy * 0.98, dpad.y * 0.4, 0.2)
+		#vx = chimnyoffset
+		vx = move_toward(vx * 0.98, dpad.x * 0.5 - 0.5 * chimnyoffset, 0.2)
+		if dpad.y > 0:
+			vy = move_toward(vy * 0.98, dpad.y * 0.66, 0.3)
+		else:
+			vy = move_toward(vy * 0.98, dpad.y * 0.66, 0.2)
 	elif ajupsideydowney:
 		pass
 	elif ajflippyfloppin:
@@ -89,14 +102,17 @@ func _physics_process(_delta: float) -> void:
 			if dpad.x: spr.flip_h = dpad.x < 0
 			vx = move_toward(vx, dpad.x * 1.0, 0.02)
 	
-	vy = move_toward(vy, 2.0, 0.01)
-	if ajupsideydowney:
-		vy += 0.03
-	elif vy < 0 and not Pin.get_jump_held():
-		vy += 0.02 # faster fall! end your jump early
-	elif vy > 0:
-		vy += 0.02
-		if ajflippyfloppin: vy += 0.01 # flippyfloppin falls a lil xtra fast
+	if inchimny:
+		pass
+	else:
+		vy = move_toward(vy, 2.0, 0.01)
+		if ajupsideydowney:
+			vy += 0.03
+		elif vy < 0 and not Pin.get_jump_held():
+			vy += 0.02 # faster fall! end your jump early
+		elif vy > 0:
+			vy += 0.02
+			if ajflippyfloppin: vy += 0.01 # flippyfloppin falls a lil xtra fast
 	
 	if onfloor:
 		ajupsideydowney = false
@@ -130,7 +146,7 @@ func _physics_process(_delta: float) -> void:
 			vy=0;
 	
 	if inchimny:
-		spr.setup([41,42],20)
+		spr.setup([41,42],10)
 		spr.playing = dpad.x or dpad.y
 	elif onfloor:
 		ajs = 1
