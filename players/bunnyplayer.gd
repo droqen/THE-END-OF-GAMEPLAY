@@ -39,7 +39,8 @@ func _physics_process(_delta: float) -> void:
 		ajs -= 1
 		ajflippyfloppin = true
 	elif ajs==0 and bufs.try_eat([JUMPHITBUF]):
-		vy = -1.0 # but gravity is high
+		vx *= 0.5
+		vy = -2.0 # but gravity is high
 		ajs = -1
 		ajupsideydowney = true
 	var onfloor : bool = (vy >= 0 and
@@ -88,7 +89,7 @@ func _physics_process(_delta: float) -> void:
 		else:
 			vy = move_toward(vy * 0.98, dpad.y * 0.66, 0.2)
 	elif ajupsideydowney:
-		pass
+		vx = move_toward(vx, dpad.x * 0.25, 0.01) # low maxspeed
 	elif ajflippyfloppin:
 		if vy < 0:
 			vx = move_toward(vx, dpad.x * 1.0, 0.02) # improved control
@@ -107,6 +108,10 @@ func _physics_process(_delta: float) -> void:
 	
 	if inchimny:
 		pass
+	elif ajupsideydowney:
+		vy = move_toward(vy, 3.0, 0.05)
+		if vy < 0 and not Pin.get_jump_held():
+			vy += 0.02 # faster fall!
 	else:
 		vy = move_toward(vy, 2.0, 0.01)
 		if vy < 0 and not Pin.get_jump_held():

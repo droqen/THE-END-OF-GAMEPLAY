@@ -23,7 +23,6 @@ script = ExtResource("3_tlwe5")
 [node name="warpmaze" parent="." instance=ExtResource("4_lb3ev")]
 tile_map_data = PackedByteArray("AAAHABwAAAAEAAEAAAAHAB4AAAAEAAAAAAALAP//AAABAAAAAAALAAAAAAABAAEAAAA=")
 goto_4 = "res://stages/00coins/01_large_coins.tscn"
-hide_on_play = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = 80.0

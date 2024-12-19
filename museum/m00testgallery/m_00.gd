@@ -14,17 +14,24 @@ var game_scale : int = 0
 #var _last_known_viewport_size : Vector2i
 
 @export var first_stage : PackedScene
-const FIRST_STAGE_DEFAULT = preload("res://stages/01debugmenu/00_debugmenu.tscn") 
+const MENU_STAGE = preload("res://stages/01debugmenu/00_debugmenu.tscn") 
+
+var current_stage : GameStage
 
 func _ready() -> void:
 	gradual_goto_gamestage(
-		null,
-		(first_stage if first_stage else FIRST_STAGE_DEFAULT).instantiate()
+		current_stage,
+		(first_stage if first_stage else MENU_STAGE).instantiate()
 	) # just create one.
 	get_viewport().size_changed.connect(_on_resize)
 	_on_resize()
 
 func _physics_process(delta: float) -> void:
+	var player = NavdiSolePlayer.GetPlayer(self)
+	if player:
+		if player.global_position.y - 5 > get_viewport_rect().position.y + get_viewport_rect().size.y:
+			gradual_goto_gamestage(current_stage, MENU_STAGE.instantiate())
+		
 	if Input.is_action_just_pressed("ui_cancel"):
 		try_pause(PauseReason.Cancelling)
 	if pause_reason == PauseReason.Cancelling:
@@ -35,7 +42,7 @@ func _physics_process(delta: float) -> void:
 			f2 = clampf(fade_progress - delta, 0.0, 1.0)
 		if f2 >= 0.999:
 			try_unpause(PauseReason.Cancelling)
-			gradual_goto_gamestage(null, FIRST_STAGE_DEFAULT.instantiate())
+			gradual_goto_gamestage(null, MENU_STAGE.instantiate())
 		elif f2 <= 0.001:
 			set_fade_progress(0.0)
 			try_unpause(PauseReason.Cancelling)
@@ -57,12 +64,13 @@ func set_gamestage(stage:GameStage) -> void:
 			prestage.queue_free()
 	if not stage_is_already_vps_child:
 		stage_holder.add_child(stage)
+		self.current_stage = stage
 		stage.owner = owner if owner else self
 		stage.touched_exit.connect(func(xid,xpath):
 			match xpath:
 				'','res://':
 					gradual_goto_gamestage(stage,
-						FIRST_STAGE_DEFAULT.instantiate())
+						MENU_STAGE.instantiate())
 				_:
 					if ResourceLoader.exists(xpath): 
 						gradual_goto_gamestage(stage,
