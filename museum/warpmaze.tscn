@@ -8,3 +8,4 @@ tile_map_data = PackedByteArray("AAD//wUAAAABAAAAAAD+/wUAAAABAAAAAAD9/wUAAAABAAA
 tile_set = ExtResource("1_jtrah")
 navigation_enabled = false
 script = ExtResource("2_blkv6")
+hide_on_play = true

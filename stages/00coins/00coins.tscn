@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://ecrt63flmkih"]
+[gd_scene load_steps=6 format=4 uid="uid://ecrt63flmkih"]
 
 [ext_resource type="Script" path="res://museum/GameStage.gd" id="1_oqq55"]
 [ext_resource type="PackedScene" uid="uid://d4jvf882206p1" path="res://museum/warpmaze.tscn" id="2_hc6oi"]
 [ext_resource type="TileSet" uid="uid://ca8h7m6cixpy0" path="res://stages/00coins/coins_tiles.tres" id="2_kpw5u"]
+[ext_resource type="LabelSettings" uid="uid://cwkmxsbnmpk8i" path="res://pixel/white_oubliette_label.tres" id="4_21etq"]
 [ext_resource type="PackedScene" uid="uid://tjgiw02jje6v" path="res://players/bunnyplayer.tscn" id="4_je2js"]
-[ext_resource type="FontVariation" uid="uid://dxacsefvd7ebq" path="res://fonts/44_shortvariation.tres" id="8_iuumd"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_obx6p"]
-font = ExtResource("8_iuumd")
 
 [node name="00Coins" type="Node2D"]
 script = ExtResource("1_oqq55")
@@ -20,7 +17,6 @@ tile_set = ExtResource("2_kpw5u")
 tile_map_data = PackedByteArray("AAD//wUAAAABAAAAAAD///3/AAABAAAAAAAFAP3/AAAEAAEAAAD//wAAAAABAAAAAAD//wEAAAABAAAAAAD//wIAAAABAAAAAAD//wMAAAABAAAAAAD//wQAAAABAAAAAAAAAAQAAAABAAEAAAD///7/AAABAAAAAAD///z/AAABAAAAAAAEAAYAAAAAAAEAAAA=")
 goto_1 = "res://stages/00coins/01_large_coins.tscn"
 goto_4 = "res://stages/00coins/02b_side_hope.tscn"
-hide_on_play = true
 
 [node name="Label" type="Label" parent="."]
 offset_top = 5.0
@@ -32,7 +28,7 @@ coins and walls.
 
 the game we never
 chose to play."
-label_settings = SubResource("LabelSettings_obx6p")
+label_settings = ExtResource("4_21etq")
 
 [node name="bunnyplayer" parent="." instance=ExtResource("4_je2js")]
 position = Vector2(55, 65)
