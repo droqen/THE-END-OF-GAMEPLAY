@@ -39,8 +39,8 @@ text = "bunnies
 oubliette"
 label_settings = SubResource("LabelSettings_obx6p")
 script = ExtResource("5_us0ap")
-menuitems = Array[String](["bunnies", "oubliette", "oub. (again)", "bun. (again)"])
-targetscenes = Array[String](["res://stages/00coins/00coins.tscn", "res://stages/02oubliette/00starting_oubliette.tscn", "res://stages/02oubliette/00starting_oubliette.tscn", "res://stages/00coins/00coins.tscn"])
+menuitems = Array[String](["bunnies", "oubliette", "the tower"])
+targetscenes = Array[String](["res://stages/00coins/00coins.tscn", "res://stages/02oubliette/00starting_oubliette.tscn", "res://stages/03tower/tower_floor_00.tscn"])
 
 [node name="debugmenucursor" type="Node2D" parent="."]
 position = Vector2(30, 35)

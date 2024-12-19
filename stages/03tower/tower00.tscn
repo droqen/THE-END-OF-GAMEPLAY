@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://byl2sb8q17avi"]
-
-[ext_resource type="Script" path="res://museum/GameStage.gd" id="1_7xt8o"]
-
-[node name="Tower00" type="Node2D"]
-script = ExtResource("1_7xt8o")
-size = Vector2i(240, 160)
