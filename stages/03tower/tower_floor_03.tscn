@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://tjgiw02jje6v" path="res://players/bunnyplayer.tscn" id="5_mu6s4"]
 [ext_resource type="LabelSettings" uid="uid://cwkmxsbnmpk8i" path="res://pixel/white_oubliette_label.tres" id="6_31q1j"]
 
-[node name="f02" type="Node2D"]
+[node name="f03" type="Node2D"]
 script = ExtResource("1_vutkc")
 size = Vector2i(200, 200)
 
@@ -19,7 +19,7 @@ script = ExtResource("3_tknik")
 
 [node name="warpmaze" parent="." instance=ExtResource("4_7rsvj")]
 tile_map_data = PackedByteArray("AAAHAAIAAAABAAAAAAABABIAAAAEAAEAAAA=")
-goto_1 = "res://stages/03tower/tower_floor_02.tscn"
+goto_1 = "res://stages/03tower/grey/tower_floor_04.tscn"
 goto_4 = "res://stages/03tower/tower_floor_02.tscn"
 
 [node name="bunnyplayer" parent="." instance=ExtResource("5_mu6s4")]
